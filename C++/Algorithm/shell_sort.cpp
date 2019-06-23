@@ -1,59 +1,39 @@
-#include<iostream>
-#include<cstdio>
-#include<algorithm>
-#include<cmath>
-#include<vector>
+#include<bits/stdc++.h>
 using namespace std;
-
-// 64bit のデータ型
-long long cnt;
-int l;
-int A[1000000];
-int n;
-vector<int> G;
-
-void insertionSort(int A[],int n,int g){
-    for(int i=g;i<n;i++){
-        int v=A[i];
-        int j=i-g;
-
-        while(j>0 && A[j]>v){
-            A[j+g]=A[j];
-            j-=g;
-            cnt++;
-        }
-        A[g+j]=v;
+int cnt;
+void insertionSort(int *A,int n,int g){
+  for(int i=g;i<n;i++){
+    int v=A[i];
+    int j=i-g;
+    while(j>=0&&A[j]>v){
+      A[j+g]=A[j];
+      j-=g;
+      cnt++;
     }
+    A[j+g]=v;
+  }
 }
-
-void shellSort(int A[],int){
-    for(int h=1;;){
-        if(h>n) break;
-        G.push_back(h);
-        h=3*h+1;
-    }
-
-    for(int i=G.size()-1;i>=0;i--){
-        insertionSort(A,n,G[i]);
-    }
+void shellSort(int *A,int n){
+  cnt=0;
+  int r=1;
+  vector<int> G;
+  while(r<=n){
+    G.push_back(r);
+    r*=2;
+  }
+  int m=G.size();
+  reverse(G.begin(),G.end());
+  cout<<m<<endl;
+  for(int i=0;i<m;i++) cout<<G[i]<<" \n"[i==m-1];
+  for(int i=0;i<m;i++) insertionSort(A,n,G[i]);
+  cout<<cnt<<endl;
 }
-
-
-main(){
-    cin>>n;
-    for(int i=0;i<n;i++) scanf("%d",&A[i]);
-    cnt=0;
-
-    shellSort(A,n);
-
-    cout<<G.size()<<endl;
-    for(int i=G.size()-1;i>=0;i--){
-        printf("%d",G[i]);
-        if(i)printf(" ");
-    }
-    printf("\n");
-    printf("%d\n",cnt);
-    for(int i=0;i<n;i++) printf("%d\n",A[i]);
-
-    return 0;
+signed main(){
+  int n;
+  cin>>n;
+  int A[n];
+  for(int i=0;i<n;i++) cin>>A[i];
+  shellSort(A,n);
+  for(int k=0;k<n;k++) cout<<A[k]<<endl;
+  return 0;
 }
