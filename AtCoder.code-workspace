@@ -6,5 +6,10 @@
 		{
 			"path": "C++\\Algorithm"
 		}
-	]
+	],
+	"settings": {
+		"files.associations": {
+			"iostream": "cpp"
+		}
+	}
 }
