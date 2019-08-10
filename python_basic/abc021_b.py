@@ -1,0 +1,6 @@
+n=int(input())
+a,b=map(int,input().split())
+k=int(input())
+p=list(map(int,input().split()))
+p.extend([a,b])
+print('YES' if len(p)==len(list(set(p))) else 'NO')
