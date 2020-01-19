@@ -25,7 +25,7 @@ for i in range(1,n):
 
     elif sum(b)<0 and sum(b)+a[i]<=0:
         b.append(a[i]+abs(sum(b)+a[i])+1)
-        ans+=abs((sum(b)+a[i])+1)
+        ans+=abs(sum(b))
         print(ans)
     print(b)
 print(ans)
